@@ -2,11 +2,12 @@ package br.com.philippesis.viewbidingexpresso
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import br.com.philippesis.viewbidingexpresso.databinding.SimpleNameListItemBinding
 import org.jetbrains.annotations.NotNull
 
-class MainAdapter(@NotNull var names: MutableList<String>) : RecyclerView.Adapter<MainAdapter.VH>() {
+class MainAdapter(@NotNull var names: MutableList<String>, var mParent: MainActivity) : RecyclerView.Adapter<MainAdapter.VH>() {
 
     private lateinit var binding: SimpleNameListItemBinding
 
@@ -20,6 +21,11 @@ class MainAdapter(@NotNull var names: MutableList<String>) : RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.bindText(names[position])
+
+        holder.itemView.setOnClickListener {
+            Toast.makeText(mParent, names[position], Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     class VH(var binding: SimpleNameListItemBinding) : RecyclerView.ViewHolder(binding.root) {

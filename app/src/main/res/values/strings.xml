@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ViewBidingExpresso</string>
+    <string name="error_mandatory_field">Preencha o nome</string>
 </resources>

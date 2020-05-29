@@ -17,21 +17,30 @@ class MainActivity : AppCompatActivity() {
 
         this.setMainAdapter()
 
-        binding.buttonDoAction.setOnClickListener {
-            names.add(binding.inputText.text.toString())
-            binding.inputText.setText("")
-            mainAdapter.notifyDataSetChanged()
-        }
+        with(binding) {
 
-        binding.buttonClearList.setOnClickListener {
-            names.clear()
-            mainAdapter.notifyDataSetChanged()
+            buttonDoAction.setOnClickListener {
+                if (binding.inputText.text.toString().isNotEmpty()) {
+                    names.add(binding.inputText.text.toString())
+                    binding.inputText.setText("")
+                    errorMsg.text = ""
+                    mainAdapter.notifyDataSetChanged()
+                } else {
+                    errorMsg.text = getString(R.string.error_mandatory_field)
+                }
+            }
+
+            buttonClearList.setOnClickListener {
+                names.clear()
+                mainAdapter.notifyDataSetChanged()
+            }
+
         }
 
     }
 
     private fun setMainAdapter() {
-        mainAdapter = MainAdapter(names)
+        mainAdapter = MainAdapter(names, this)
         with(binding.recyclerNames) {
             setHasFixedSize(true)
             adapter = mainAdapter

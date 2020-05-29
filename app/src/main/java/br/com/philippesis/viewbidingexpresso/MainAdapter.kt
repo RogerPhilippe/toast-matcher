@@ -28,10 +28,12 @@ class MainAdapter(@NotNull var names: MutableList<String>, var mParent: MainActi
 
     }
 
-    class VH(var binding: SimpleNameListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class VH(binding: SimpleNameListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        private val nameText = binding.tfName
 
         fun bindText(name: String) {
-            binding.tfName.text = name
+            nameText.text = name
         }
 
     }

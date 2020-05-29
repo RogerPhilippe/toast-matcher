@@ -1,4 +1,4 @@
-package br.com.philippesis.viewbidingexpresso.ui.main
+package br.com.philippesis.viewbidingexpresso
 
 import androidx.lifecycle.ViewModel
 
